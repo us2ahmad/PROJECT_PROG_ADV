@@ -1,0 +1,24 @@
+c:\users\ِabdulrahem\documents\visual studio 2013\Projects\my_project\my_project\bin\Debug\my_project.exe.config
+c:\users\ِabdulrahem\documents\visual studio 2013\Projects\my_project\my_project\bin\Debug\Database1.mdf
+c:\users\ِabdulrahem\documents\visual studio 2013\Projects\my_project\my_project\bin\Debug\Database1_log.ldf
+c:\users\ِabdulrahem\documents\visual studio 2013\Projects\my_project\my_project\bin\Debug\my_project.exe
+c:\users\ِabdulrahem\documents\visual studio 2013\Projects\my_project\my_project\bin\Debug\my_project.pdb
+c:\users\ِabdulrahem\documents\visual studio 2013\Projects\my_project\my_project\bin\Debug\EntityFramework.dll
+c:\users\ِabdulrahem\documents\visual studio 2013\Projects\my_project\my_project\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\ِabdulrahem\documents\visual studio 2013\Projects\my_project\my_project\bin\Debug\EntityFramework.xml
+c:\users\ِabdulrahem\documents\visual studio 2013\Projects\my_project\my_project\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\ِabdulrahem\documents\visual studio 2013\Projects\my_project\my_project\obj\Debug\my_project.csprojResolveAssemblyReference.cache
+c:\users\ِabdulrahem\documents\visual studio 2013\Projects\my_project\my_project\obj\Debug\my_project.exe
+c:\users\ِabdulrahem\documents\visual studio 2013\Projects\my_project\my_project\obj\Debug\my_project.pdb
+D:\my_project_end\my_project\my_project\bin\Debug\Database1.mdf
+D:\my_project_end\my_project\my_project\bin\Debug\Database1_log.ldf
+D:\my_project_end\my_project\my_project\bin\Debug\my_project.exe.config
+D:\my_project_end\my_project\my_project\bin\Debug\my_project.exe
+D:\my_project_end\my_project\my_project\bin\Debug\my_project.pdb
+D:\my_project_end\my_project\my_project\bin\Debug\EntityFramework.dll
+D:\my_project_end\my_project\my_project\bin\Debug\EntityFramework.SqlServer.dll
+D:\my_project_end\my_project\my_project\bin\Debug\EntityFramework.xml
+D:\my_project_end\my_project\my_project\bin\Debug\EntityFramework.SqlServer.xml
+D:\my_project_end\my_project\my_project\obj\Debug\my_project.exe
+D:\my_project_end\my_project\my_project\obj\Debug\my_project.pdb
+D:\my_project_end\my_project\my_project\obj\Debug\my_project.csprojResolveAssemblyReference.cache

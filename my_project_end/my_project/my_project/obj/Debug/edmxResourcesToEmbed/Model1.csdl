@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Students" Relationship="Self.FK__Students__Depart__15502E78" FromRole="Departments" ToRole="Students" />
+    <NavigationProperty Name="Subjects" Relationship="Self.FK__Subjects__Depart__1DE57479" FromRole="Departments" ToRole="Subjects" />
+  </EntityType>
+  <EntityType Name="Exam">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubjectId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Term" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Subject" Relationship="Self.FK__Exams__SubjectId__24927208" FromRole="Exams" ToRole="Subjects" />
+    <NavigationProperty Name="StudentMarks" Relationship="Self.FK__StudentMa__ExamI__286302EC" FromRole="Exams" ToRole="StudentMarks" />
+  </EntityType>
+  <EntityType Name="StudentMark">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="Int32" Nullable="false" />
+    <Property Name="ExamId" Type="Int32" Nullable="false" />
+    <Property Name="Mark" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Exam" Relationship="Self.FK__StudentMa__ExamI__286302EC" FromRole="StudentMarks" ToRole="Exams" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__StudentMa__Stude__276EDEB3" FromRole="StudentMarks" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <NavigationProperty Name="Department" Relationship="Self.FK__Students__Depart__15502E78" FromRole="Students" ToRole="Departments" />
+    <NavigationProperty Name="StudentMarks" Relationship="Self.FK__StudentMa__Stude__276EDEB3" FromRole="Students" ToRole="StudentMarks" />
+  </EntityType>
+  <EntityType Name="SubjectLecture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubjectId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Content" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Subject" Relationship="Self.FK__SubjectLe__Subje__21B6055D" FromRole="SubjectLectures" ToRole="Subjects" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MinimumDegree" Type="Int32" Nullable="false" />
+    <Property Name="Term" Type="Int32" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Department" Relationship="Self.FK__Subjects__Depart__1DE57479" FromRole="Subjects" ToRole="Departments" />
+    <NavigationProperty Name="Exams" Relationship="Self.FK__Exams__SubjectId__24927208" FromRole="Subjects" ToRole="Exams" />
+    <NavigationProperty Name="SubjectLectures" Relationship="Self.FK__SubjectLe__Subje__21B6055D" FromRole="Subjects" ToRole="SubjectLectures" />
+  </EntityType>
+  <Association Name="FK__Students__Depart__15502E78">
+    <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Subjects__Depart__1DE57479">
+    <End Role="Departments" Type="Self.Department" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subjects" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subjects">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Exams__SubjectId__24927208">
+    <End Role="Subjects" Type="Self.Subject" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Exams" Type="Self.Exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Exams">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentMa__ExamI__286302EC">
+    <End Role="Exams" Type="Self.Exam" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="StudentMarks" Type="Self.StudentMark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exams">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StudentMarks">
+        <PropertyRef Name="ExamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StudentMa__Stude__276EDEB3">
+    <End Role="Students" Type="Self.Student" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="StudentMarks" Type="Self.StudentMark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StudentMarks">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SubjectLe__Subje__21B6055D">
+    <End Role="Subjects" Type="Self.Subject" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SubjectLectures" Type="Self.SubjectLecture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubjectLectures">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="Self.Department" />
+    <EntitySet Name="Exams" EntityType="Self.Exam" />
+    <EntitySet Name="StudentMarks" EntityType="Self.StudentMark" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="SubjectLectures" EntityType="Self.SubjectLecture" />
+    <EntitySet Name="Subjects" EntityType="Self.Subject" />
+    <AssociationSet Name="FK__Students__Depart__15502E78" Association="Self.FK__Students__Depart__15502E78">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Subjects__Depart__1DE57479" Association="Self.FK__Subjects__Depart__1DE57479">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Subjects" EntitySet="Subjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Exams__SubjectId__24927208" Association="Self.FK__Exams__SubjectId__24927208">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="Exams" EntitySet="Exams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentMa__ExamI__286302EC" Association="Self.FK__StudentMa__ExamI__286302EC">
+      <End Role="Exams" EntitySet="Exams" />
+      <End Role="StudentMarks" EntitySet="StudentMarks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StudentMa__Stude__276EDEB3" Association="Self.FK__StudentMa__Stude__276EDEB3">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="StudentMarks" EntitySet="StudentMarks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SubjectLe__Subje__21B6055D" Association="Self.FK__SubjectLe__Subje__21B6055D">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="SubjectLectures" EntitySet="SubjectLectures" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
